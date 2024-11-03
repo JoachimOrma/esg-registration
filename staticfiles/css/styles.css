@@ -1,0 +1,187 @@
+body, html {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: linear-gradient(rgba(8, 9, 13, 0.8), rgba(15, 23, 43, .8));
+}
+
+.hidden { display: none; }
+
+/* PAGE BACKROUND */
+.page-background {
+    /* background: linear-gradient(rgba(8, 9, 13, 0.8), rgba(15, 23, 43, .8)), url("../img/bg.png"); */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* MAIN PAGE CONTAINER */
+.maincontainer { position: relative; width: 320px; height: 520px; }
+
+/* ANIMATION CONTAINER */
+.animationcontainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+}
+
+
+/* INVITE IMAGE CONTAINER */
+.imagecontainer {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background-image: url('../img/JCAT50.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+} 
+
+/* Image Container Title */
+.title {
+    font-weight: bolder;
+    opacity: 0;
+    display: none;
+    margin-bottom: -18px;
+}
+
+/* Class to show the image container */
+.show {
+    display: inline-block;
+    opacity: 1;
+}
+
+/* FORM CONTAINER */
+.formcontainer {
+    color: rgb(235, 181, 49);
+    background-color: #030303;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 10px;
+}
+
+/* Country Code Input Field */
+.iti { width: 100%; }
+
+/* Spinner */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.btn-gold { color: #000;  background-color:  rgb(235, 181, 49); }
+
+.btn-gold:hover,
+.btn-gold:focus,
+.btn-gold:active {
+    background-color:  rgba(235, 181, 49, .7);
+    color: #000;
+}
+
+ /* SWAL FROM SWEETALERT */
+.swal-modal {
+    width: 340px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    padding-bottom: 4px;
+    transform: translateX(-50%);
+}
+.progress-bar {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    left: 2px;
+    background: #f3f3f3;
+    height: 3px;
+    overflow: hidden;
+}
+.progress {
+    background: rgb(161, 117, 6);
+    height: 100%;
+    transition: width 0.1s;
+}
+
+ /* SWAL MODAL FROM SWEETALERT */
+
+/* MEDIA QUERIES */
+
+/* For smartphones */
+@media (max-width: 480px) {
+    .page-background {
+        height: 100vh;
+        width: 100vw; 
+    }
+}
+
+/* For larger smartphones or small tablets */
+@media (min-width: 481px) and (max-width: 600px) {
+    .page-background {
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+
+@media (min-width: 325px) {
+    .maincontainer {
+        width: 300px;
+        height: 500px;
+    }
+    .title h5 {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 400px) {
+    .maincontainer {
+        width: 300px;
+        height: 500px;
+    }
+    .title h5 {
+        font-size: 14px;
+    }
+    #infocontainer {
+        margin-top: -130px;
+    }
+    #infocontainer img {
+        width: 300px;
+    }
+}
+
+@media (min-width: 720px) {
+    .maincontainer {
+        width: 430px;
+        height: 580px;
+    }
+    .title {
+        margin-bottom: -16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .maincontainer {
+        width: 400px;
+        height: 580px;
+    }
+    .title {
+        margin-bottom: -16px;
+    }
+}
+/* MEDIA QUERIES */

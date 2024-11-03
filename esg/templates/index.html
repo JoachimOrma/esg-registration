@@ -307,8 +307,7 @@
                         showAlert(`<span class='text-success'><i class='fa fa-circle-check'></i></span> ${response.message}`);
                         setTimeout(() => window.location.href = "{% url 'home' %}", 3000);
                     } else {
-                        showAlert(`<span class='text-info'><i class='fa fa-circle-info'></i></span> ${response.message}`);
-                        setTimeout(() => $('#email').focus(), 3000);
+                        showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${response.message}`)
                     }
                     $('#submitButton').text("Submit");
                 },

@@ -68,8 +68,8 @@
         <div class="card">
             <div class="card-header text-center bg-success"> </div>
             <div class="card-body px-md-4 py-0 pt-2">
-                <span class="display-6">ESG Mentorship Program</span>
-                <h5 class="fst-italic" id="title"> Mentor and Mentee Form. </h5>
+                <span class="fs-4">ESG Mentorship Program</span>
+                <h6 class="fst-italic" id="title"> Mentor and Mentee Form. </h6>
             </div>
             <div class="card-footer pb-0">
                 <p class="text-danger"> * Indicates required questions. </p>
@@ -221,14 +221,14 @@
         const handleCategory = (category) => {
             document.getElementById('formcontainer').classList.add('hidden');
             if (category === "mentee"){
-                document.getElementById('title').innerText = "Mentee Form";
+                document.getElementById('title').innerText = "";
                 document.getElementById('menteeCard').classList.remove('hidden');
-                document.querySelector('.card-footer').classList.add('hidden');
+                //document.querySelector('.card-footer').classList.add('hidden');
                 
             } else {
-                document.getElementById('title').innerText = "Mentor Form";
+                document.getElementById('title').innerText = "";
                 document.getElementById('mentorCard').classList.remove('hidden');
-                document.querySelector('.card-footer').classList.add('hidden');
+                //document.querySelector('.card-footer').classList.add('hidden');
             }
         };
 

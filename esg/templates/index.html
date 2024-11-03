@@ -306,7 +306,7 @@
                     if (response.status == 200) {
                         showAlert(`<span class='text-success'><i class='fa fa-circle-check'></i></span> ${response.message}`);
                         setTimeout(() => window.location.href = "{% url 'home' %}", 3000);
-                    } else {
+                    } else if(response.status == "400") {
                         showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${response.message}`)
                     }
                     $('#submitButton').text("Submit");

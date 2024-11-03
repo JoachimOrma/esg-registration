@@ -12,9 +12,9 @@ def mentee(request):
     if request.method == "POST":
         try:
             # Extract data from the request
-            first_name = request.POST.get('first_name')
-            last_name = request.POST.get('last_name')
-            email = request.POST.get('email')
+            first_name = request.POST.get('mentee_first_name')
+            last_name = request.POST.get('mentee_last_name')
+            email = request.POST.get('mentee_email')
             
             # Validate required fields
             if not first_name or not last_name or not email:

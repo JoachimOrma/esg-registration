@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG | Mentee </title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/admin.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+
+    <style>
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-family: 'Trebuchet MS', sans-serif;
+            background: rgb(198, 246, 198);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container scrollable">
+        <div class="card">
+            <div class="card-header text-center bg-success"> </div>
+            <div class="card-body px-md-4 py-0 pt-2">
+                <span class="fs-4">ESG Mentorship Program</span>
+                <h6 class="fst-italic" id="title"> ..for people and the planet. </h6>
+            </div>
+            <div class="card-footer pb-0">
+                <p class="text-danger"> * Indicates required questions. </p>
+            </div> 
+        </div> 
+        <!-- Mentee Card -->
+        <div class="card border-0" id="menteeCard">
+            <div class="card-header text-light bg-success py-1 pb-0"> 
+                <p class="fs-5"> Mentees </p> 
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="mentee_first_name" class="label-text">First Name <span class="text-danger">*</span> </label>
+                            <input type="text" name="mentee_first_name" id="mentee_first_name" class="form-control input-style" autofocus required/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="mentee_last_name" class="label-text">Last Name <span class="text-danger">*</span> </label>
+                            <input type="text" name="mentee_last_name" id="mentee_last_name" class="form-control input-style" required/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="mentee_age" class="label-text">Age</label>
+                            <input type="text" name="mentee_age" id="mentee_age" class="form-control input-style"/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="mentee_email" class="label-text">Email Address <span class="text-danger">*</span> </label>
+                            <input type="email" name="mentee_email" id="mentee_email" class="form-control input-style" required/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="current_education" class="label-text">Current Education/Position</label>
+                            <input type="text" name="current_education" id="current_education" class="form-control input-style"/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="career_path" class="label-text">Desired Career Path</label>
+                            <input type="text" name="career_path" id="career_path" class="form-control input-style"/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="industry_interest" class="label-text">Industry Interest</label>
+                            <label class="label-class" style="font-size: 6px">(e.g, renewable energy, policy)</label>
+                            <input type="text" name="industry_interest" id="industry_interest" class="form-control input-style"/>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="desired_skill" class="label-text">Desired Skills to Develop</label>
+                            <label class="label-class" style="font-size: 6px">(e.g, communication, project management)</label>
+                            <input type="text" name="desired_skill" id="desired_skill" class="form-control input-style"/>
+                        </div>
+                         <div class="col-md-12 mb-3">
+                            <label for="mentee_availability" class="label-text"> Availability for Mentorship </label> <br />
+                            <label class="label-class" style="font-size: 6px">(e.g, hours/week)</label>
+                            <input type="text" name="mentee_availability" id="mentee_availability" class="form-control input-style"/>
+                        </div>
+
+                        <input type="hidden" id="category" name="category" value="${category}" />          
+                        <div>
+                            <button type="button" class="btn btn-dark shadow" onclick="backToHome();">Back</button>
+                            <button class="btn btn-success shadow ms-3" id="menteeSubmitBtn">Submit</button>
+                        </div>
+                    </div>  
+                </form>
+            </div> 
+        </div>
+        <!-- Mentee Card -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+    <script src="{% static 'assets/js/admin.min.js' %}"></script>
+    <script>
+
+        const backToHome = () => {
+            window.location.href = "{% url 'home' %}";
+        }
+        
+        const showAlert = (text, timer = 3000) => {
+            const progressBar = `<div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>`;
+            swal({
+                content: {
+                    element: 'div',
+                    attributes: {
+                        innerHTML: `<div>${text}</div>${progressBar}`,
+                    },
+                },
+                timer,
+                buttons: false,
+            });
+            const progressElement = document.querySelector('.progress');
+            let width = 100;
+            const interval = setInterval(() => {
+                width -= (100 / (timer / 100));
+                progressElement.style.width = `${width}%`;
+
+                if (width <= 0) {
+                    clearInterval(interval);
+                    swal.close();
+                }
+            }, 100);
+        }
+
+        // Submitting the forms
+        const submitForm = (url, data) => {
+            
+            // Swal Alert
+            const showAlert = (text, timer = 3000) => {
+                const progressBar = `<div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>`;
+                swal({
+                    content: {
+                        element: 'div',
+                        attributes: {
+                            innerHTML: `<div>${text}</div>${progressBar}`,
+                        },
+                    },
+                    timer,
+                    buttons: false,
+                });
+                const progressElement = document.querySelector('.progress');
+                let width = 100;
+                const interval = setInterval(() => {
+                    width -= (100 / (timer / 100));
+                    progressElement.style.width = `${width}%`;
+
+                    if (width <= 0) {
+                        clearInterval(interval);
+                        swal.close();
+                    }
+                }, 100);
+            }
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                beforeSend: function() {
+                    $('#menteeSubmitBtn').html(`
+                        <div class='d-flex align-items-center justify-content-center'>
+                            <span class='spinner-border text-light' aria-hidden='true'></span>
+                            <span role='status' class="sr-only">processing...</span>
+                        </div>
+                    `);
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        showAlert(`<span class='text-success'><i class='fa fa-circle-check'></i></span> ${response.message}`);
+                        setTimeout(() => window.location.href = "{% url 'home' %}", 3000);
+                    } else if(response.status == "400") {
+                        showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${response.message}`)
+                    }
+                    $('#menteeSubmitBtn').text("Submit");
+                },
+                error: function(error) {
+                    let errorMsg = "Something went wrong, please check your internet connection and try again.";
+                    if (error.responseJSON && error.responseJSON.message) {
+                        errorMsg = error.responseJSON.message;
+                    }
+                    showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${errorMsg}`);
+                    $('#submitButton').text("Submit");
+                }
+            });
+        };
+
+        // Attach event listeners for submit buttons
+        $('#menteeSubmitBtn').click(function(e) {
+            e.preventDefault();
+            const menteeData = {
+                mentee_first_name: $('#mentee_first_name').val().trim(),
+                mentee_last_name: $('#mentee_last_name').val().trim(),
+                mentee_email: $('#mentee_email').val().trim(),
+                mentee_age: $('#mentee_age').val().trim(),
+                current_education: $('#current_education').val().trim(),
+                career_path: $('#career_path').val().trim(),
+                industry_interest: $('#industry_interest').val().trim(),
+                desired_skill: $('#desired_skill').val().trim(),
+                mentee_availability: $('#mentee_availability').val().trim(),
+                category: $('#category').val().trim(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            };
+            submitForm("{% url 'mentee' %}", menteeData);
+        });
+
+
+    </script>
+</body>
+</html>

@@ -1,1 +1,59 @@
+body, html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+.page-background {
+    background: url("../img/esg-bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100px;
+}
+label {
+    margin-bottom: 3px;
+}
+.scrollable {
+    margin-top: 10px;
+    height: 90%;
+    overflow-y: auto;
+}
+.card, .card-header {
+    border-radius: 0px;
+}
+.hidden { display: none; }
 
+.swal-modal {
+    width: 340px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    padding-bottom: 4px;
+    transform: translateX(-50%);
+}
+.progress-bar {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    left: 2px;
+    background: #f3f3f3;
+    height: 3px;
+    overflow: hidden;
+}
+.progress {
+    background: green;
+    height: 100%;
+    transition: width 0.1s;
+}
+
+@media (min-width: 312px) { .card { width: 90vw; } }
+@media (min-width: 768px) { .card { width: 80vw; } }
+@media (min-width: 992px) { .card { width: 50vw; } }
+@media (min-width: 1200px) { .card { width: 45vw; } }

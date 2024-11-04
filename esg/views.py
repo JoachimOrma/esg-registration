@@ -1,22 +1,24 @@
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.templatetags.static import static
+from django.urls import reverse
 from .models import Mentee, Mentor
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    brochure_url = static('files/2024-ESG FORUM_Brochure.pdf')
+    return render(request, 'index.html', context={'brochure_url':brochure_url})
 
 def mentee(request):
     if request.method == "POST":
         try:
-            # Extract data from the request
             first_name = request.POST.get('mentee_first_name')
             last_name = request.POST.get('mentee_last_name')
             email = request.POST.get('mentee_email')
             
-            # Validate required fields
             if not first_name or not last_name or not email:
                 return JsonResponse({'status': 400, 'message': 'All fields with * are required.'})
             
@@ -37,16 +39,15 @@ def mentee(request):
             return JsonResponse({'status': 400, 'message': str(e)})
         except Exception as e:
             return JsonResponse({'status': 500, 'message': 'An error occurred: ' + str(e)})
+    return render(request, 'mentee.html')
 
 def mentor(request):
     if request.method == "POST":
         try:
-            # Extract data from the request
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
-            
-            # Validate required fields
+        
             if not first_name or not last_name or not email:
                 return JsonResponse({'status': 400, 'message': 'All fields with * are required.'})
 
@@ -67,3 +68,6 @@ def mentor(request):
             return JsonResponse({'status': 400, 'message': str(e)})
         except Exception as e:
             return JsonResponse({'status': 500, 'message': 'An error occurred: ' + str(e)})
+
+    return render(request, 'mentor.html')
+

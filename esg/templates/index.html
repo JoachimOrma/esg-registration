@@ -7,19 +7,12 @@
     <title>ESG | Registration </title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/admin.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/fontawesome/css/all.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
 
     <style>
-        body, html {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            font-family: 'Trebuchet MS', sans-serif;
-            background: rgb(198, 246, 198);
-        }
         label {
             margin-bottom: 3px;
         }
@@ -64,147 +57,32 @@
 </head>
 <body>
 
-    <div class="container scrollable mt-5">
-        <div class="card">
-            <div class="card-header text-center bg-success"> </div>
-            <div class="card-body px-md-4 py-0 pt-2">
-                <span class="fs-4">ESG Mentorship Program</span>
-                <h6 class="fst-italic" id="title"> Mentor and Mentee Form. </h6>
-            </div>
-            <div class="card-footer pb-0">
-                <p class="text-danger"> * Indicates required questions. </p>
+    <div class="container-fluid page-background">
+        <div class="container scrollable mt-1">
+            <div class="d-flex">
+                <img src="static/assets/img/esg-logo.png" alt="esg-logo" width="80">
+                <span>
+                    <span class="display-4"> ESG Mentorship Program </span> <br/>
+                </span>
             </div> 
-        </div> 
-        <div class="card border-0" id="formcontainer">
-            <div class="card-body">
-                <p class="mb-3"> Kindly select your category <span class="text-danger">*</span> </p>
-                <div class-="d-flex align-items-center">
-                    <button type="button" class="btn btn-success" id="mentorBtn">Mentors</button>
-                    <button type="button" class="btn btn-primary ms-3" id="menteeBtn">Mentees</button>
+            <p class="fst-italic" style="margin-left: 80px;"> Mentors and Mentees. </p>
+            <div class="d-flex flex-column align-items-center my-5">
+                <p class="mb-3 text-center"> Kindly select your category <span class="text-danger">*</span> </p>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-success" id="mentorBtn">Mentor</button>
+                    <button type="button" class="btn btn-primary ms-3" id="menteeBtn">Mentee</button>
                 </div>
             </div>
-        </div>
-        <!-- Mentee Card -->
-        <div class="card border-0 hidden" id="menteeCard">
-            <div class="card-header text-light bg-success py-1 pb-0"> 
-                <p class="fs-5"> Mentees </p> 
+            <!-- <div class="card border-0 my-5 bg-light" id="formcontainer" style="background-color: transparent; opacity:0">
+                <div class="card-body d-flex flex-column align-items-center" style="background-color: transparent;">
+                    
+                </div>
+            </div> -->
+            <div class="d-flex flex-column text-center">
+                <img src="" alt="2024 ESG Forum Brochure">
+                <a class="btn btn-primary col-4" href="{{ brochure_url }}" target="_blank">Download</a>
             </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="mentee_first_name" class="label-text">First Name <span class="text-danger">*</span> </label>
-                            <input type="text" name="mentee_first_name" id="mentee_first_name" class="form-control input-style" autofocus required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="mentee_last_name" class="label-text">Last Name <span class="text-danger">*</span> </label>
-                            <input type="text" name="mentee_last_name" id="mentee_last_name" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="mentee_age" class="label-text">Age</label>
-                            <input type="text" name="mentee_age" id="mentee_age" class="form-control input-style"/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="mentee_email" class="label-text">Email Address <span class="text-danger">*</span> </label>
-                            <input type="email" name="mentee_email" id="mentee_email" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="current_education" class="label-text">Current Education/Position</label>
-                            <input type="text" name="current_education" id="current_education" class="form-control input-style"/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="career_path" class="label-text">Desired Career Path</label>
-                            <input type="text" name="career_path" id="career_path" class="form-control input-style"/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="industry_interest" class="label-text">Industry Interest</label>
-                            <label class="label-class" style="font-size: 6px">(e.g, renewable energy, policy)</label>
-                            <input type="text" name="industry_interest" id="industry_interest" class="form-control input-style"/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="desired_skill" class="label-text">Desired Skills to Develop</label>
-                            <label class="label-class" style="font-size: 6px">(e.g, communication, project management)</label>
-                            <input type="text" name="desired_skill" id="desired_skill" class="form-control input-style"/>
-                        </div>
-                         <div class="col-md-12 mb-3">
-                            <label for="mentee_availability" class="label-text"> Availability for Mentorship </label> <br />
-                            <label class="label-class" style="font-size: 6px">(e.g, hours/week)</label>
-                            <input type="text" name="mentee_availability" id="mentee_availability" class="form-control input-style"/>
-                        </div>
-
-                        <input type="hidden" id="category" name="category" value="${category}" />          
-                        <div>
-                            <button type="button" class="btn btn-dark shadow" onclick="backToHome();">Back</button>
-                            <button class="btn btn-success shadow ms-3" id="menteeSubmitBtn">Submit</button>
-                        </div>
-                    </div>  
-                </form>
-            </div> 
         </div>
-        <!-- Mentee Card -->
-
-        <!-- Mentor Card -->
-         <div class="card border-0 hidden" id="mentorCard">
-            <div class="card-header text-light bg-success py-1 pb-0"> 
-                <p class="fs-5"> Mentors </p> 
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="first_name" class="label-text">First Name <span class="text-danger">*</span> </label>
-                            <input type="text" name="first_name" id="first_name" class="form-control input-style" required autofocus/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="last_name" class="label-text">Last Name <span class="text-danger">*</span> </label>
-                            <input type="text" name="last_name" id="last_name" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="age" class="label-text">Age</label>
-                            <input type="text" name="age" id="age" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="email" class="label-text">Email Address <span class="text-danger">*</span> </label>
-                            <input type="email" name="email" id="email" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="current_position" class="label-text">Current Position</label>
-                            <input type="text" name="current_position" id="current_position" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="current_industry" class="label-text">Current Industry</label>
-                            <label class="label-class" style="font-size: 6px">(e.g, renewable energy, policy)</label>
-                            <input type="text" name="current_industry" id="current_industry" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="previous_industry_exp" class="label-text">Previous Industry Experience</label>
-                            <label class="label-class" style="font-size: 6px">(e.g, corporate sustainability)</label>
-                            <input type="text" name="previous_industry_exp" id="previous_industry_exp" class="form-control input-style" required/>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="areas_of_expertise" class="label-text">Areas of Expertise</label>
-                            <label class="label-class" style="font-size: 6px">(e.g, technical skills, leadership)</label>
-                            <input type="text" name="areas_of_expertise" id="areas_of_expertise" class="form-control input-style" required/>
-                        </div>
-                         <div class="col-md-12 mb-3">
-                            <label for="availability" class="label-text"> Availability for Mentorship </label> <br />
-                            <label class="label-class" style="font-size: 6px">(e.g, hours/week)</label>
-                            <input type="text" name="availability" id="availability" class="form-control input-style" required/>
-                        </div>
-
-
-                        <input type="hidden" id="location" name="location" value="${category}" />          
-                        <div>
-                            <button type="button" class="btn btn-dark shadow" onclick="backToHome();">Back</button>
-                            <button class="btn btn-success shadow ms-3" id="mentorSubmitBtn">Submit</button>
-                        </div>
-                    </div>  
-                </form>
-            </div> 
-         </div>
-        <!-- Mentor Card -->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -214,150 +92,8 @@
     <script src="{% static 'assets/js/admin.min.js' %}"></script>
     <script>
 
-        const backToHome = () => {
-            window.location.href = "{% url 'home' %}";
-        }
-        
-        const handleCategory = (category) => {
-            document.getElementById('formcontainer').classList.add('hidden');
-            if (category === "mentee"){
-                document.getElementById('title').innerText = "";
-                document.getElementById('menteeCard').classList.remove('hidden');
-                //document.querySelector('.card-footer').classList.add('hidden');
-                
-            } else {
-                document.getElementById('title').innerText = "";
-                document.getElementById('mentorCard').classList.remove('hidden');
-                //document.querySelector('.card-footer').classList.add('hidden');
-            }
-        };
-
-        document.getElementById('mentorBtn').addEventListener('click', () => handleCategory('mentor'));
-        document.getElementById('menteeBtn').addEventListener('click', () => handleCategory('mentee')); 
-
-        const showAlert = (text, timer = 3000) => {
-            const progressBar = `<div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>`;
-            swal({
-                content: {
-                    element: 'div',
-                    attributes: {
-                        innerHTML: `<div>${text}</div>${progressBar}`,
-                    },
-                },
-                timer,
-                buttons: false,
-            });
-            const progressElement = document.querySelector('.progress');
-            let width = 100;
-            const interval = setInterval(() => {
-                width -= (100 / (timer / 100));
-                progressElement.style.width = `${width}%`;
-
-                if (width <= 0) {
-                    clearInterval(interval);
-                    swal.close();
-                }
-            }, 100);
-        }
-
-        // Submitting the forms
-        const submitForm = (url, data, button) => {
-            submitButton = document.getElementById(`${button}`);
-            
-            // Swal Alert
-            const showAlert = (text, timer = 3000) => {
-                const progressBar = `<div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>`;
-                swal({
-                    content: {
-                        element: 'div',
-                        attributes: {
-                            innerHTML: `<div>${text}</div>${progressBar}`,
-                        },
-                    },
-                    timer,
-                    buttons: false,
-                });
-                const progressElement = document.querySelector('.progress');
-                let width = 100;
-                const interval = setInterval(() => {
-                    width -= (100 / (timer / 100));
-                    progressElement.style.width = `${width}%`;
-
-                    if (width <= 0) {
-                        clearInterval(interval);
-                        swal.close();
-                    }
-                }, 100);
-            }
-
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: data,
-                beforeSend: function() {
-                    $('#submitButton').html(`
-                        <div class='d-flex align-items-center justify-content-center'>
-                            <span class='spinner-border text-light' aria-hidden='true'></span>
-                            <span role='status' class="sr-only">processing...</span>
-                        </div>
-                    `);
-                },
-                success: function(response) {
-                    if (response.status == 200) {
-                        showAlert(`<span class='text-success'><i class='fa fa-circle-check'></i></span> ${response.message}`);
-                        setTimeout(() => window.location.href = "{% url 'home' %}", 3000);
-                    } else if(response.status == "400") {
-                        showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${response.message}`)
-                    }
-                    $('#submitButton').text("Submit");
-                },
-                error: function(error) {
-                    let errorMsg = "Something went wrong, please check your internet connection and try again.";
-                    if (error.responseJSON && error.responseJSON.message) {
-                        errorMsg = error.responseJSON.message;
-                    }
-                    showAlert(`<span class='text-danger'><i class='fa fa-circle-xmark'></i></span> ${errorMsg}`);
-                    $('#submitButton').text("Submit");
-                }
-            });
-        };
-
-        // Attach event listeners for submit buttons
-        $('#menteeSubmitBtn').click(function(e) {
-            e.preventDefault();
-            const menteeData = {
-                mentee_first_name: $('#mentee_first_name').val().trim(),
-                mentee_last_name: $('#mentee_last_name').val().trim(),
-                mentee_email: $('#mentee_email').val().trim(),
-                mentee_age: $('#mentee_age').val().trim(),
-                current_education: $('#current_education').val().trim(),
-                career_path: $('#career_path').val().trim(),
-                industry_interest: $('#industry_interest').val().trim(),
-                desired_skill: $('#desired_skill').val().trim(),
-                mentee_availability: $('#mentee_availability').val().trim(),
-                category: $('#category').val().trim(),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-            };
-            submitForm("{% url 'mentee' %}", menteeData, menteeSubmitBtn);
-        });
-
-        $('#mentorSubmitBtn').click(function(e) {
-            e.preventDefault();
-            const mentorData = {
-                first_name: $('#first_name').val().trim(),
-                last_name: $('#last_name').val().trim(),
-                email: $('#email').val().trim(),
-                age: $('#age').val().trim(),
-                current_position: $('#current_position').val().trim(),
-                current_industry: $('#current_industry').val().trim(),
-                previous_industry_exp: $('#previous_industry_exp').val().trim(),
-                areas_of_expertise: $('#areas_of_expertise').val().trim(),
-                availability: $('#availability').val().trim(),
-                category: $('#location').val().trim(),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-            };
-            submitForm("{% url 'mentor' %}", mentorData, mentorSubmitBtn);
-        });
+        document.getElementById('mentorBtn').addEventListener('click', () => window.location.href="{% url 'mentor' %}");
+        document.getElementById('menteeBtn').addEventListener('click', () => window.location.href="{% url 'mentee' %}"); 
 
     </script>
 </body>
